@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+.git
+Dockerfile
+.DS_Store
+.gitignore
+.dockerignore
+
+# Flask stuff:
+instance/
+
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
