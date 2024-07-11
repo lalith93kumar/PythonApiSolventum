@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "temperature stats"
-version = "0.1.0"
+version = "1.2.1"
 description = ""
 authors = ["lalith93kumar <lalithmax20@gmail.com>"]
 readme = "README.md"
