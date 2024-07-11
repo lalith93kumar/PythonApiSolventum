@@ -9,3 +9,4 @@ ENV/
 .DS_Store
 instance
 test5.db
+.terraform
