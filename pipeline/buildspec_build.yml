@@ -1,0 +1,38 @@
+version: 0.2
+
+env:
+  variables:
+    API_CODE_SRC_DIR: "api"
+    AWS_DEFAULT_REGION: "us-east-1"
+    AWS_ACCOUNT_ID: "208383029138"
+    REPOSITORYNAME: "name"
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - pip install poetry
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
+      - git config --global user.email "lalithmax20@gmail.com"
+      - git config --global user.name "lalith kumar"
+      - git config --global credential.helper '!aws codecommit credential-helper $@'
+      - git config --global credential.UseHttpPath true
+  build:
+    commands:
+      - cd ${CODEBUILD_SRC_DIR}/${API_CODE_SRC_DIR}
+      # - tagname=$(poetry version -s)
+      # - echo "current tag name=$tagname"
+      # - poetry version patch
+      # - git add .
+      # - git commit -m "Upgrading version"
+      # - git push origin HEAD:master
+      - tagname=$(poetry version -s)
+      - docker build -t backendapp:${tagname} .
+      - docker tag backendapp:${tagname} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPOSITORYNAME,,}:${tagname}
+  post_build:
+    commands:
+      - cd ${CODEBUILD_SRC_DIR}/${API_CODE_SRC_DIR}
+      - tagname=$(poetry version -s)
+      - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPOSITORYNAME,,}:${tagname}

@@ -1,0 +1,5 @@
+variable "clusterName" {
+}
+
+variable "repositoryName" {
+}
