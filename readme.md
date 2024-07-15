@@ -135,7 +135,8 @@ To automate the infrastructure setup for this project, we use Terraform. The fol
     ```bash
     cd ./terraform_code/CodePipelineRes
     terraform init
-    terraform plan
+    terraform plan -var "clusterName=${CLUSTERNAME}" -var "accountID=${AWS_ACCOUNT_ID}" -var "repositoryName=${REPOSITORYNAME}" -var "region=${AWS_DEFAULT_REGION}"
+    
     terraform apply -var "clusterName=${CLUSTERNAME}" -var "accountID=${AWS_ACCOUNT_ID}" -var "repositoryName=${REPOSITORYNAME}" -var "region=${AWS_DEFAULT_REGION}"  --auto-approve
     ```
 
