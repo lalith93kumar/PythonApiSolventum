@@ -1,4 +1,4 @@
-resource "aws_alb_listener" "api_service_listener" {
+resource "aws_alb_listener" "apiServiceListener" {
   load_balancer_arn = aws_lb.applicationLoadBalancer.arn
   port              = 5000
   protocol          = "HTTP"
@@ -17,7 +17,7 @@ resource "aws_alb_listener" "api_service_listener" {
   }
 }
 
-resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "redirectPortHTTP" {
   load_balancer_arn = aws_lb.applicationLoadBalancer.arn
   port              = "80"
   protocol          = "HTTP"

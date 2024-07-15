@@ -46,4 +46,5 @@ module "CodePipelineProjectsDockerBuild" {
     DockerBuildProjectName = toset(module.CodeBuildProjectsDockerBuild.DockerBuildProjectName)
     accountID = var.accountID
     region = var.region
+    clusterName = var.clusterName
 }

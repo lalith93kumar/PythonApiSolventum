@@ -1,17 +1,14 @@
 variable "region" {
     description = "aws region needs to be set "
 }
-
 variable "clusterName" {
-    default = "pt1"
+    description = "Cluster Name"
 }
-
 variable "accountID" {
-    default = "208383029138"
-    description = "aws region needs to be set "
+    default = "xxxxx"
+    description = "AWS AccountID to form Docker ARN"
 }
-
 variable "repositoryName" {
-    default = "PythonApiSolventum"
-    description = "aws region needs to be set "
+    default = "xxxx"
+    description = "ECR repository name to form Docker ARN"
 }

@@ -6,7 +6,6 @@ module "vpc_details" {
 
 module "cluster" {
     source = "./cluster"
-    region = var.region
     clusterName = var.clusterName
 }
 
@@ -20,7 +19,6 @@ module "iam" {
 
 module "logGroup" {
     source = "./logGroups"
-    region = var.region
     clusterName = var.clusterName
 }
 
@@ -36,14 +34,12 @@ module "ecsTaskDefinition" {
 
 module "securityGroup" {
     source = "./securityGroup"
-    region = var.region
     clusterName = var.clusterName
     vpc_id = module.vpc_details.vpcId
 }
 
 module "loadBalancer" {
     source = "./loadBalancer"
-    region = var.region
     clusterName = var.clusterName
     vpc_id =  module.vpc_details.vpcId
     public_subnet_ids =  module.vpc_details.public_subnet_ids
@@ -53,10 +49,9 @@ module "loadBalancer" {
 
 module "ecsService" {
     source = "./ecsService"
-    region = var.region
     clusterName = var.clusterName
     private_subnet_ids = module.vpc_details.private_subnet_ids
-    clusterId = module.cluster.cluster_id
+    clusterId = module.cluster.clusterId
     application_security_group_ids = module.securityGroup.security_group_ids
     api_task_definition_id = module.ecsTaskDefinition.api_task_definition_arn
     api_lb_target_group_arn = module.loadBalancer.api_lb_target_group_arn

@@ -4,21 +4,17 @@ variable "region" {
 }
 
 variable "clusterName" {
-    default = "pt1"
     description = "Cluster Name"
 }
 
 variable "accountID" {
-    default = "208383029138"
     description = "aws region needs to be set "
 }
 
 variable "repositoryName" {
-    default = "PythonApiSolventum"
     description = "aws region needs to be set "
 }
 
 variable "repositoryVersion" {
-    default = "1.2.57"
     description = "Cluster Name"
 }

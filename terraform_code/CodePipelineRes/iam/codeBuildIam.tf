@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "codeBuildServiceCloudWatchPolicy" {
-  name   = "codebuild-logs-role-policy"
+  name   = "codeBuildLogsRolePolicy"
   role   = aws_iam_role.codeBuildServiceRole.id
   policy = jsonencode(
     {
@@ -43,7 +43,7 @@ resource "aws_iam_role_policy" "codeBuildServiceCloudWatchPolicy" {
 }
 
 resource "aws_iam_role_policy" "codeBuildServiceS3Policy" {
-  name   = "codebuild-s3-role-policy"
+  name   = "codeBuildS3RolePolicy"
   role   = aws_iam_role.codeBuildServiceRole.id
   policy = jsonencode(
     {
@@ -67,4 +67,3 @@ resource "aws_iam_role_policy" "codeBuildServiceS3Policy" {
     }
   )
 }
-          # ${join(":",[var.cloudWatchLogGroupArn,"*"])}

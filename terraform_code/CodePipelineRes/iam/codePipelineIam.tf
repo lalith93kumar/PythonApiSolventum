@@ -20,13 +20,13 @@ resource "aws_iam_role" "codePipelineSericeRole" {
 }
 
 resource "aws_iam_role_policy" "code-pipeline-logs" {
-  name   = "codepipeline-logs-role-policy"
+  name   = "codePipelineLogsRolePolicy"
   role   = aws_iam_role.codeBuildServiceRole.id
   policy = aws_iam_role_policy.codeBuildServiceCloudWatchPolicy.policy
 }
 
 resource "aws_iam_role_policy" "code-pipeline-s3" {
-  name   = "codepipeline-s3-role-policy"
+  name   = "codePipelineS3RolePolicy"
   role   = aws_iam_role.codeBuildServiceRole.id
   policy = aws_iam_role_policy.codeBuildServiceS3Policy.policy
 }

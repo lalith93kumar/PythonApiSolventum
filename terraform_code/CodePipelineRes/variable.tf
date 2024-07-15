@@ -1,22 +1,22 @@
 variable "region" {
-    default = "us-east-1"
     description = "aws region needs to be set "
 }
 
 variable "accountID" {
-    default = "208383029138"
-    description = "aws region needs to be set "
+    description = "aws AccountID needs to be set "
 }
 
 variable "repositoryName" {
-    default = "PythonApiSolventum"
-    description = "aws region needs to be set "
+    description = "repository name"
 }
 
 variable "projectList" {
-  default = [{"name"="DockerBuild","specfile"="pipeline/buildspec_build.yml"},
-  {"name"="TerraformPlan","specfile"="pipeline/buildspec_plan.yml"},
-  {"name"="TerraformApply","specfile"="pipeline/buildspec_apply.yml"}
-  ]
+  default = [{"name"="ADockerBuild","specfile"="pipeline/buildspec_build.yml"},
+  {"name"="BTerraformPlan","specfile"="pipeline/buildspec_plan.yml"},
+  {"name"="CTerraformApply","specfile"="pipeline/buildspec_apply.yml"},
+  {"name"="DTerraformDestroy-approval","specfile"="pipeline/buildspec_destroy.yml"}]
 }
 
+variable "clusterName" {
+    description = "Cluster Name"
+}

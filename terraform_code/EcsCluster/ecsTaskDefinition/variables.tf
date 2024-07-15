@@ -1,28 +1,20 @@
 variable "region" {
-    description = "aws region needs to be set "
+    description = "AWS Region to form Docker link"
 }
-
 variable "clusterName" {
-    default = "pt1"
     description = "The name of the ECS cluster"
     type        = string
 }
-
 variable "iam_arm" {
+    description = "Iam Execution role ARN attach to task definition"
 }
-
 variable "repositoryVersion" {
-    default = "1.2.9"
-    description = "The version of the service"
+    description = "Docker tag or API Version to form Docker link"
     type        = string
 }
-
 variable "accountID" {
-    default = "208383029138"
-    description = "aws region needs to be set "
+    description = "AWS AccountID to form Docker link"
 }
-
 variable "repositoryName" {
-    default = "PythonApiSolventum"
-    description = "aws region needs to be set "
+    description = "ECR repository name to form Docker link"
 }

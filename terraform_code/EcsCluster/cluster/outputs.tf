@@ -1,9 +1,9 @@
-output "cluster_id" {
+output "clusterId" {
   value = aws_ecs_cluster.TestCluster.id
-  description = "cluster ID"
+  description = "ECS cluster ID"
 }
 
 output "clusterName" {
   value = aws_ecs_cluster.TestCluster.name
-  description = "cluster ID"
+  description = "ECS cluster Name"
 }

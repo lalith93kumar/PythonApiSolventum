@@ -11,5 +11,5 @@ variable "cloudWatchLogGroupArn" {
 }
 
 variable "s3BucketTerraformBackupArn" {
-    description = "arn cloudWatch Arn for pipeline"
+    description = "arn s3 Arn for Terraform BackUp"
 }

@@ -18,7 +18,7 @@ variable "repositoryName" {
 
 variable "DockerBuildProjectName" {
   type = set(string)
-  description = "Repository name"
+  description = "Code Build Project Name list"
 }
 
 variable "s3BucketId" {
@@ -31,5 +31,9 @@ variable "accountID" {
 }
 
 variable "region" {
-    description = "aws region needs to be set "
+    description = "aws region needs to be set"
+}
+
+variable "clusterName" {
+    description = "Cluster Name"
 }

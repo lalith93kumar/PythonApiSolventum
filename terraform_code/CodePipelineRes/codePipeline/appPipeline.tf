@@ -31,6 +31,16 @@ resource "aws_codepipeline" "example" {
     for_each = var.DockerBuildProjectName
     content {
       name = split("-",stage.value)[0]
+      dynamic action {
+        for_each = strcontains(lower(split("-",stage.value)[1]),"approval") ? [1] : []
+        content {
+          name     = "Approval"
+          category = "Approval"
+          owner    = "AWS"
+          provider = "Manual"
+          version  = "1"
+        }
+      }
       action {
         name            = split("-",stage.value)[0]
         category        = "Build"
@@ -55,6 +65,11 @@ resource "aws_codepipeline" "example" {
               name  = "REPOSITORYNAME"
               type  = "PLAINTEXT"
               value = "${var.repositoryName}"
+            },
+            {
+              name  = "CLUSTERNAME"
+              type  = "PLAINTEXT"
+              value = "${var.clusterName}"
             }
             ])
         }

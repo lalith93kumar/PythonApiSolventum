@@ -4,7 +4,7 @@ env:
   variables:
     API_CODE_SRC_DIR: "api"
     AWS_DEFAULT_REGION: "us-east-1"
-    AWS_ACCOUNT_ID: "208383029138"
+    AWS_ACCOUNT_ID: "XXXXX"
     REPOSITORYNAME: "name"
 phases:
   install:
