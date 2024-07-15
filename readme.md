@@ -121,7 +121,7 @@ To automate the infrastructure setup for this project, we use Terraform. The fol
 
 #### CI\CD Pipeline Setup 
 
-1. Add repository to AWS Codecommit.
+1. Add repository to AWS Codecommit with Branch `master`
 
 2. Set the Code Pipeline Terraform environment variables:
     ```bash
@@ -136,7 +136,7 @@ To automate the infrastructure setup for this project, we use Terraform. The fol
     cd ./terraform_code/CodePipelineRes
     terraform init
     terraform plan -var "clusterName=${CLUSTERNAME}" -var "accountID=${AWS_ACCOUNT_ID}" -var "repositoryName=${REPOSITORYNAME}" -var "region=${AWS_DEFAULT_REGION}"
-    
+
     terraform apply -var "clusterName=${CLUSTERNAME}" -var "accountID=${AWS_ACCOUNT_ID}" -var "repositoryName=${REPOSITORYNAME}" -var "region=${AWS_DEFAULT_REGION}"  --auto-approve
     ```
 
