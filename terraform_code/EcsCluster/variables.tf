@@ -5,14 +5,7 @@ variable "region" {
 
 variable "clusterName" {
     description = "Cluster Name"
-}
-
-variable "accountID" {
-    description = "aws region needs to be set "
-}
-
-variable "repositoryName" {
-    description = "aws region needs to be set "
+    default = pt1
 }
 
 variable "repositoryVersion" {

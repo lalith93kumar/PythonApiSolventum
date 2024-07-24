@@ -12,13 +12,13 @@ resource "aws_codepipeline" "example" {
     name = "Source"
 
     action {
-      name     = "SourceAction"
+      name     = "Source"
       category = "Source"
       owner    = "AWS"
-      provider = "CodeCommit"
+      provider = "CodeStarSourceConnection"
       version  = "1"
       configuration = {
-        RepositoryName = var.repositoryName
+        FullRepositoryId = var.repositoryUrl
         BranchName     = var.branch
         OutputArtifactFormat = "CODEBUILD_CLONE_REF"
       }
@@ -76,4 +76,9 @@ resource "aws_codepipeline" "example" {
       }
     }
   }
+}
+
+resource "aws_codestarconnections_connection" "gitHubConnection" {
+  name          = "gitHubConnection"
+  provider_type = "GitHub"
 }

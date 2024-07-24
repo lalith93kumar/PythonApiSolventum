@@ -5,3 +5,7 @@ variable "clusterName" {
 variable "repositoryName" {
     description = "repository name"
 }
+
+variable "serviceName" {
+    description = "ECS service name"
+}

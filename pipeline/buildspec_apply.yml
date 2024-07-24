@@ -5,7 +5,6 @@ env:
     TERRAFORM_CODE_SRC_DIR: terraform_code/EcsCluster
     API_CODE_SRC_DIR: api
     AWS_DEFAULT_REGION: "us-east-1"
-    AWS_ACCOUNT_ID: "XXXXX"
     REPOSITORYNAME: "name"
     CLUSTERNAME: "pt1"
 phases:
@@ -24,7 +23,7 @@ phases:
       - cd ${CODEBUILD_SRC_DIR}/${TERRAFORM_CODE_SRC_DIR}
       - echo "## TERRAFORM APPLY = Starting with the Terraform Apply"
       - terraform init
-      - terraform apply -var "clusterName=${CLUSTERNAME}" -var "repositoryVersion=${tagname}" -var "accountID=${AWS_ACCOUNT_ID}" -var "repositoryName=${REPOSITORYNAME}" -var "region=${AWS_DEFAULT_REGION}" --auto-approve
+      - terraform apply -var "clusterName=${CLUSTERNAME}" -var "repositoryVersion=${tagname}" -var "repositoryName=${REPOSITORYNAME}" -var "region=${AWS_DEFAULT_REGION}" --auto-approve
 
 artifacts:
   files:

@@ -2,14 +2,6 @@ variable "region" {
     description = "aws region needs to be set "
 }
 
-variable "accountID" {
-    description = "aws AccountID needs to be set "
-}
-
-variable "repositoryName" {
-    description = "repository name"
-}
-
 variable "projectList" {
   default = [{"name"="ADockerBuild","specfile"="pipeline/buildspec_build.yml"},
   {"name"="BTerraformPlan","specfile"="pipeline/buildspec_plan.yml"},

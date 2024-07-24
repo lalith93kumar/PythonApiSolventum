@@ -1,3 +1,11 @@
+locals {
+  repositoryName = basename(abspath("${path.module}/../.."))
+}
+
+module "currentAccount" {
+    source = "./account"
+}
+
 module "vpc_details" {
     source = "./vpc"
     region = var.region
@@ -13,8 +21,8 @@ module "iam" {
     source = "./iam"
     region = var.region
     clusterName = var.clusterName
-    accountID = var.accountID
-    repositoryName = var.repositoryName
+    accountID = module.currentAccount.accountId
+    repositoryName = local.repositoryName
 }
 
 module "logGroup" {
@@ -28,8 +36,8 @@ module "ecsTaskDefinition" {
     iam_arm = module.iam.iam_arm
     repositoryVersion = var.repositoryVersion
     region = var.region
-    accountID = var.accountID
-    repositoryName = var.repositoryName
+    accountID = module.currentAccount.accountId
+    repositoryName = local.repositoryName
 }
 
 module "securityGroup" {
@@ -46,7 +54,6 @@ module "loadBalancer" {
     security_group_ids = module.securityGroup.security_group_ids
 }
 
-
 module "ecsService" {
     source = "./ecsService"
     clusterName = var.clusterName
@@ -60,7 +67,8 @@ module "ecsService" {
 }
 
 module "auto_scaling" {
-  source = "./autoScaling"
-  clusterName = module.cluster.clusterName
-  repositoryName = module.ecsService.apiServiceID
+    source = "./autoScaling"
+    clusterName = module.cluster.clusterName
+    seserviceName =  = module.ecsService.apiServiceID
+    repositoryName = local.repositoryName
 }
