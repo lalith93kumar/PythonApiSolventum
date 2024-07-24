@@ -69,6 +69,6 @@ module "ecsService" {
 module "auto_scaling" {
     source = "./autoScaling"
     clusterName = module.cluster.clusterName
-    seserviceName =  = module.ecsService.apiServiceID
+    serviceName = module.ecsService.apiServiceID
     repositoryName = local.repositoryName
 }

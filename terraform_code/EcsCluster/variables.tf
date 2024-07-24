@@ -5,7 +5,7 @@ variable "region" {
 
 variable "clusterName" {
     description = "Cluster Name"
-    default = pt1
+    default = "pt1"
 }
 
 variable "repositoryVersion" {

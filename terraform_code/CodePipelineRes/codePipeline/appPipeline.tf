@@ -18,6 +18,7 @@ resource "aws_codepipeline" "example" {
       provider = "CodeStarSourceConnection"
       version  = "1"
       configuration = {
+        ConnectionArn = aws_codestarconnections_connection.gitHubConnection.arn
         FullRepositoryId = var.repositoryUrl
         BranchName     = var.branch
         OutputArtifactFormat = "CODEBUILD_CLONE_REF"

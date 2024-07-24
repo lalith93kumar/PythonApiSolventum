@@ -1,5 +1,6 @@
 variable "region" {
     description = "aws region needs to be set "
+    default = "us-east-1"
 }
 
 variable "projectList" {
@@ -11,4 +12,5 @@ variable "projectList" {
 
 variable "clusterName" {
     description = "Cluster Name"
+    default = "pt1"
 }
