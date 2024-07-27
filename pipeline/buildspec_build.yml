@@ -30,9 +30,9 @@ phases:
       # - git push origin HEAD:master
       - tagname=$(poetry version -s)
       - docker build -t backendapp:${tagname} .
-      - docker tag backendapp:${tagname} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPOSITORYNAME,,}1:${tagname}
+      - docker tag backendapp:${tagname} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPOSITORYNAME,,}:${tagname}
   post_build:
     commands:
       - cd ${CODEBUILD_SRC_DIR}/${API_CODE_SRC_DIR}
       - tagname=$(poetry version -s)
-      - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPOSITORYNAME,,}1:${tagname}
+      - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPOSITORYNAME,,}:${tagname}
