@@ -50,7 +50,8 @@ resource "aws_codepipeline" "example" {
           owner           = "AWS"
           provider        = "CodeBuild"
           version         = "1"
-          input_artifacts = ["source_artifact"]
+          input_artifacts = [stage.value["inputArtifacts"]]
+          output_artifacts = [stage.value["output_artifacts"]]
           configuration = {
             ProjectName = stage.value,
             EnvironmentVariables = jsonencode([
