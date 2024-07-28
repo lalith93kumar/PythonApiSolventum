@@ -21,3 +21,8 @@ variable "repositoryName" {
     description = "ECR repository name to form Docker link"
     type = string
 }
+
+variable "rds_endpoint" {
+    description = "ECR repository name to form Docker link"
+    type = string
+}

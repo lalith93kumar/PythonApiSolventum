@@ -30,6 +30,18 @@ module "logGroup" {
     clusterName = var.clusterName
 }
 
+module "securityGroup" {
+    source = "./securityGroup"
+    clusterName = var.clusterName
+    vpc_id = module.vpc_details.vpcId
+}
+
+module "rds" {
+    source = "./rds"
+    security_group_ids = module.securityGroup.security_group_ids
+    public_subnet_name =  module.vpc_details.public_subnet_ids
+}
+
 module "ecsTaskDefinition" {
     source = "./ecsTaskDefinition"
     clusterName = var.clusterName
@@ -38,13 +50,9 @@ module "ecsTaskDefinition" {
     region = var.region
     accountID = module.currentAccount.accountId
     repositoryName = local.repositoryName
+    rds_endpoint = module.rds.rds_endpoint
 }
 
-module "securityGroup" {
-    source = "./securityGroup"
-    clusterName = var.clusterName
-    vpc_id = module.vpc_details.vpcId
-}
 
 module "loadBalancer" {
     source = "./loadBalancer"

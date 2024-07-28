@@ -12,3 +12,8 @@ output "public_subnet_ids" {
   value = [for subnet in module.vpc.public_subnets : subnet]
   description = "VPC ID"
 }
+
+output "subnet_name" {
+  value = module.vpc.database_subnet_group_name
+  description = "VPC ID"
+}

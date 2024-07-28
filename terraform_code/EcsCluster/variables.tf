@@ -11,6 +11,6 @@ variable "clusterName" {
 }
 
 variable "repositoryVersion" {
-    description = "Cluster Name"
+    default = "1.2.57"
     type = string
 }
