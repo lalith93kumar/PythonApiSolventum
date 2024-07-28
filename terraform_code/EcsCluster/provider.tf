@@ -9,6 +9,7 @@ terraform {
       bucket = "terraform-codepipeline-api"
       key    = "apiFlaskStateFile"
       region = "us-east-1"
+      dynamodb_table = "terraform-ecs-state"
     }
 }
 

@@ -9,6 +9,7 @@ terraform {
       bucket = "terraform-codepipeline-api"
       key    = "codePipelineStateFile"
       region = "us-east-1"
+      dynamodb_table = "terraform-codeduild-pipeline"
     }
 }
 

@@ -10,6 +10,10 @@ variable "cloudWatchLogGroupArn" {
     description = "arn cloudWatch Arn for pipeline"
 }
 
+
 variable "s3BucketTerraformBackupArn" {
+    description = "arn s3 Arn for Terraform BackUp"
+}
+variable "terraformLockDynmodbARN" {
     description = "arn s3 Arn for Terraform BackUp"
 }

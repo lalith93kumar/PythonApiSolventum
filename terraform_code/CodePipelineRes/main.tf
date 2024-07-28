@@ -6,6 +6,10 @@ module "currentAccount" {
     source = "./account"
 }
 
+module "dynamodb" {
+    source = "./dynamodb"
+}
+
 module "ecr" {
     source = "./ecr"
     repositoryName = local.repositoryName
@@ -27,6 +31,7 @@ module "iamRole" {
     s3BucketArn = module.ArtifactoryBucket.s3BucketArn
     cloudWatchLogGroupArn = module.pipelineCloudWatch.cloudWatchLogGroupArn
     s3BucketTerraformBackupArn = module.ArtifactoryBucket.s3BucketTerraformBackupArn
+    terraformLockDynmodbARN = module.dynamodb.terraformLockDynmodbARN
 }
 
 module "CodeBuildProjectsDockerBuild" {

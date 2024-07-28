@@ -67,3 +67,29 @@ resource "aws_iam_role_policy" "codeBuildServiceS3Policy" {
     }
   )
 }
+
+resource "aws_iam_role_policy" "codeBuildServiceDynamodbPolicy" {
+  name   = "codeBuildDynamodbRolePolicy"
+  role   = aws_iam_role.codeBuildServiceRole.id
+  policy = jsonencode(
+    {
+      Version = "2012-10-17",
+      Statement = [
+        {
+          Effect = "Allow",
+          Resource = [
+            var.terraformLockDynmodbARN
+          ],
+          Action = [
+            "dynamodb:PutItem",
+            "dynamodb:UpdateItem",
+            "dynamodb:DeleteItem",
+            "dynamodb:GetItem",
+            "dynamodb:Query",
+            "dynamodb:Scan"
+          ]
+        }
+      ]
+    }
+  )
+}

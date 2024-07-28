@@ -21,12 +21,18 @@ resource "aws_iam_role" "codePipelineSericeRole" {
 
 resource "aws_iam_role_policy" "code-pipeline-logs" {
   name   = "codePipelineLogsRolePolicy"
-  role   = aws_iam_role.codeBuildServiceRole.id
+  role   = aws_iam_role.codePipelineSericeRole.id
   policy = aws_iam_role_policy.codeBuildServiceCloudWatchPolicy.policy
 }
 
 resource "aws_iam_role_policy" "code-pipeline-s3" {
   name   = "codePipelineS3RolePolicy"
-  role   = aws_iam_role.codeBuildServiceRole.id
+  role   = aws_iam_role.codePipelineSericeRole.id
   policy = aws_iam_role_policy.codeBuildServiceS3Policy.policy
+}
+
+resource "aws_iam_role_policy" "code-pipeline-dynamodb" {
+  name   = "codePipelineDynamodbRolePolicy"
+  role   = aws_iam_role.codePipelineSericeRole.id
+  policy = aws_iam_role_policy.codeBuildServiceDynamodbPolicy.policy
 }
