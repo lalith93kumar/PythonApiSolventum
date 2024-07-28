@@ -42,7 +42,7 @@ class DBWorker:
             new_reading = TemperatureReading(sensor_id=sensor_id, temperature=temperature, time=time)
             db.session.add(new_reading)
             db.session.commit()
-            return self.getAllTemperatures()
+            return self.dto(200, {"Response": "Added Sucessfully"})
         except Exception as e:
             return self.dto(400, f"Exception: {str(e)}")
 
