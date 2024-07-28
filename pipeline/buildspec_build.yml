@@ -36,3 +36,6 @@ phases:
       - cd ${CODEBUILD_SRC_DIR}/${API_CODE_SRC_DIR}
       - tagname=$(poetry version -s)
       - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPOSITORYNAME,,}:${tagname}
+artifacts:
+  files:
+    - '**/*'

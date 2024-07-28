@@ -53,7 +53,7 @@ resource "aws_codepipeline" "example" {
           input_artifacts = [stage.value["inputArtifacts"]]
           output_artifacts = [stage.value["outputArtifact"]]
           configuration = {
-            ProjectName = stage.value["name"],
+            ProjectName = join("-",[stage.value["name"],var.repositoryName]),
             EnvironmentVariables = jsonencode([
                 {
                   name  = "AWS_DEFAULT_REGION"
@@ -87,3 +87,36 @@ resource "aws_codestarconnections_connection" "gitHubConnection" {
   name          = "gitHubConnection"
   provider_type = "GitHub"
 }
+
+# locals {
+#   webhook_secret = "super-secret"
+# }
+
+# resource "aws_codepipeline_webhook" "bar" {
+#   name            = "test-webhook-github-bar" 
+#   authentication  = "GITHUB_HMAC" 
+#   target_action   = "Source"
+#   target_pipeline = "${aws_codepipeline.example.name}"
+
+#   authentication_configuration {
+#     secret_token = "${local.webhook_secret}"
+#   }
+
+#   filter {
+#     json_path    = "$.ref"
+#     match_equals = "refs/heads/{Branch}"
+#   }
+# }
+
+# resource "github_repository_webhook" "test" {
+#   repository = "lalith93kumar/PythonApiSolventum"
+
+#   configuration {
+#     url          = "${aws_codepipeline_webhook.bar.url}"
+#     content_type = "form"
+#     insecure_ssl = true
+#     secret       = "${local.webhook_secret}"
+#   }
+
+#   events = ["push"]
+# }
