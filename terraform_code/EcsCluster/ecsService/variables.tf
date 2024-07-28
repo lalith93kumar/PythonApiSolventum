@@ -10,7 +10,6 @@ variable "api_task_definition_id" {
 }
 variable "application_lb_arn" {
     description = "Load Balancer attach to API Service"
-    type = string
 }
 variable "application_security_group_ids" {
     description = "Attach API service to Security Group."

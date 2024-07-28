@@ -22,7 +22,6 @@ variable "repositoryName" {
 
 variable "DockerBuildProjectName" {
   description = "Code Build Project Name list"
-  type = string
 }
 
 variable "s3BucketId" {
