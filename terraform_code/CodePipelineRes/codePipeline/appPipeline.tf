@@ -31,9 +31,9 @@ resource "aws_codepipeline" "example" {
   dynamic stage {
     for_each = var.DockerBuildProjectName
     content {
-      name = split("-",stage.value)[0]
+      name = split("-",stage.value["name"])[0]
       dynamic action {
-        for_each = strcontains(lower(split("-",stage.value)[1]),"approval") ? [1] : []
+        for_each = strcontains(lower(split("-",stage.value["name"])[0]),"approval") ? [1] : []
         content {
           name     = "Approval"
           category = "Approval"
@@ -43,9 +43,9 @@ resource "aws_codepipeline" "example" {
         }
       }
       dynamic action {
-        for_each = strcontains(lower(split("-",stage.value)[1]),"approval") ? [] : [1]
+        for_each = strcontains(lower(split("-",stage.value["name"])[0]),"approval") ? [] : [1]
         content {
-          name            = split("-",stage.value)[0]
+          name            = split("-",stage.value["name"])[0]
           category        = "Build"
           owner           = "AWS"
           provider        = "CodeBuild"
@@ -53,7 +53,7 @@ resource "aws_codepipeline" "example" {
           input_artifacts = [stage.value["inputArtifacts"]]
           output_artifacts = [stage.value["outputArtifact"]]
           configuration = {
-            ProjectName = stage.value,
+            ProjectName = stage.value["name"],
             EnvironmentVariables = jsonencode([
                 {
                   name  = "AWS_DEFAULT_REGION"

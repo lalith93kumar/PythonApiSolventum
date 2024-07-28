@@ -44,13 +44,14 @@ module "CodeBuildProjectsDockerBuild" {
 }
 
 module "CodePipelineProjectsDockerBuild" {
+    depends_on = [ module.CodeBuildProjectsDockerBuild.DockerBuildProjectName ]
     source = "./codePipeline"
     repositoryUrl = "lalith93kumar/${local.repositoryName}"
     branch = "master"
     repositoryName = local.repositoryName
     codePipelineIamArn = module.iamRole.codePipelineIamArn
     s3BucketId = module.ArtifactoryBucket.s3BucketId
-    DockerBuildProjectName = toset(module.CodeBuildProjectsDockerBuild.DockerBuildProjectName)
+    DockerBuildProjectName = var.projectList
     accountID = module.currentAccount.accountId
     region = var.region
     clusterName = var.clusterName

@@ -17,7 +17,6 @@ variable "repositoryName" {
 
 
 variable "DockerBuildProjectName" {
-  type = set(string)
   description = "Code Build Project Name list"
 }
 
