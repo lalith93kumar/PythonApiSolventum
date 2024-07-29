@@ -1,5 +1,5 @@
 locals {
-  repositoryName = basename(abspath("${path.module}/../.."))
+  repositoryName = strcontains(basename(abspath("${path.module}/../..")),"src")? "PythonApiSolventum" : basename(abspath("${path.module}/../..")) 
 }
 
 module "currentAccount" {
