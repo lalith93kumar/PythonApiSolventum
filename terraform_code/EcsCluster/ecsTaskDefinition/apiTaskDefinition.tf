@@ -17,12 +17,12 @@ resource "aws_ecs_task_definition" "apiTaskDefinition" {
         name : "apiService",
         networkMode : "awsvpc",
         essential : true,
-        environment = [
-          {
-            name  = "DBINSTANCE_ENDPOINT"
-            value = var.rds_endpoint
-          },
-        ]
+        # environment = [
+        #   {
+        #     name  = "DBINSTANCE_ENDPOINT"
+        #     value = var.rds_endpoint
+        #   },
+        # ]
         portMappings : [
           {
             containerPort : 5000,
